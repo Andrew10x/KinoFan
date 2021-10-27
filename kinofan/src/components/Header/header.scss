@@ -36,3 +36,24 @@ a {
 i {
   font-size: 28px;
 }
+
+@media (max-width: 1200px) {
+  .logo {
+    flex: 2;
+  }
+  .contacts {
+    flex: 1;
+  }
+}
+
+@media (max-width: 950px) {
+  .phone {
+    display: none;
+  }
+  .logo {
+    flex: 3;
+  }
+  .contacts {
+    flex: 1;
+  }
+}

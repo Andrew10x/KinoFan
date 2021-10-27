@@ -3,17 +3,27 @@ import './movie.scss';
 import image from '../../assets/1.jpg';
 
 export default function index() {
-  const dayInMs = 3600 * 24 * 1000;
+    const dayInMs = 3600 * 24 * 1000;
   let today = new Date();
   today = Number(today.setHours(0, 0, 0, 0));
 
   let dateArr = [];
+  let i = 0;
+  let k = 0;
+  while(i < 8) {
+    let cur_day = today + k * dayInMs;
+    let new_date = new Date(cur_day);
+    if (new_date.getDate() === 31 && new_date.getHours() === 23) {
+        k++;
+        continue;
+    }
 
-  for (let i = 0; i < 8; i++) {
-    let cur_day = today + i * dayInMs;
-    dateArr.push(new Date(cur_day).getDate());
-    console.log(dateArr);
+    dateArr.push(new_date.getDate());
+    i++;
+    k++;
   }
+
+
   return (
     <>
       <section id="movie">
@@ -56,46 +66,18 @@ export default function index() {
         <h2 className="title2">Розклад сеансів</h2>
 
         <div className="date">
-          <div className="date-block">
-            <div className="cur-date">20 жовтня</div>
-            <div className="date-times">
-              <div>10:00</div>
-              <div>13:00</div>
-              <div>16:00</div>
-              <div>19:00</div>
-              <div>21:40</div>
-            </div>
-          </div>
-          <div className="date-block">
-            <div className="cur-date">20 жовтня</div>
-            <div className="date-times">
-              <div>10:00</div>
-              <div>13:00</div>
-              <div>16:00</div>
-              <div>19:00</div>
-              <div>21:40</div>
-            </div>
-          </div>
-          <div className="date-block">
-            <div className="cur-date">20 жовтня</div>
-            <div className="date-times">
-              <div>10:00</div>
-              <div>13:00</div>
-              <div>16:00</div>
-              <div>19:00</div>
-              <div>21:40</div>
-            </div>
-          </div>
-          <div className="date-block">
-            <div className="cur-date">20 жовтня</div>
-            <div className="date-times">
-              <div>10:00</div>
-              <div>13:00</div>
-              <div>16:00</div>
-              <div>19:00</div>
-              <div>21:40</div>
-            </div>
-          </div>
+            {dateArr.map(date =>(
+                <div className="date-block">
+                    <div className="cur-date">{date} жовтня</div>
+                    <div className="date-times">
+                        <div>10:00</div>
+                        <div>13:00</div>
+                        <div>16:00</div>
+                        <div>19:00</div>
+                        <div>21:40</div>
+                    </div>
+                </div>
+            ))}
         </div>
       </section>
     </>
