@@ -1,15 +1,20 @@
+import { Switch, Route } from 'react-router-dom';
+
 import Header from './components/Header';
 import Movie from './pages/Movie';
 
 import './App.scss';
 
-function App() {
-
+const App = () => {
   return (
-    <div className="App">
-    <Header/>
-    <Movie/>  
-    </div>
+    <>
+      <Header/>
+      <Switch>
+        <Route path="/film">
+          <Movie/> 
+        </Route>
+      </Switch> 
+    </>
   );
 }
 
