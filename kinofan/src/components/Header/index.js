@@ -20,9 +20,9 @@ const Header = () => {
           <a href="#">
             <i className="fab fa-youtube-square" aria-hidden="true"></i>
           </a>
-          <a href="#">
+          {/* <a href="#">
             <i className="fab fa-telegram" aria-hidden="true"></i>
-          </a>
+          </a> */}
         </div>
       </div>
     </header>

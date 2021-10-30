@@ -13,53 +13,53 @@ const getPosters = index => {
   const posters = [
     {
       image: avatar,
-      name: 'Avatar',
-      left: '12rem',
+      name: 'Аватар',
+      left: '11rem',
     },
     {
       image: avengers,
-      name: 'Avengers: Endgame',
-      left: index === 0 ? '36rem' : '4rem',
+      name: 'Месники: Завершення',
+      left: index === 0 ? '33.8rem' : '1.7rem',
     },
     {
       image: harrypotter,
-      name: `Harry Potter`,
-      left: index === 0 ? '73rem' : index === 1 ? '40rem' : '8rem',
+      name: `Гаррі Поттер`,
+      left: index === 0 ? '72rem' : index === 1 ? '40rem' : '7.5rem',
     },
     {
       image: starwars,
-      name: 'Star Wars',
-      left: index === 1 ? '74rem' : index === 2 ? '42rem' : '10rem',
+      name: 'Зоряні війни',
+      left: index === 1 ? '72rem' : index === 2 ? '40rem' : '7.8rem',
     },
     {
       image: thedarkknight,
-      name: 'The Dark Knight',
-      left: index === 2 ? '70rem' : index === 3 ? '38rem' : '5rem',
+      name: 'Темний лицар',
+      left: index === 2 ? '71rem' : index === 3 ? '38.8rem' : '6.7rem',
     },
     {
       image: zootopia,
-      name: 'Zootopia',
-      left: index === 3 ? '75rem' : index === 4 ? '43rem' : '10rem',
+      name: 'Зоотрополіс',
+      left: index === 3 ? '72rem' : index === 4 ? '40rem' : '8rem',
     },
     {
       image: jurassicworld,
-      name: 'The Jurassic World',
-      left: index === 4 ? '69rem' : index === 5 ? '36.5rem' : '4.5rem',
+      name: 'Світ Юрського періоду',
+      left: index === 4 ? '65.5rem' : index === 5 ? '33.5rem' : '1.5rem',
     },
     {
       image: lionking,
-      name: 'The Lion King',
-      left: index === 5 ? '71rem' : index === 6 ? '39rem' : '7rem',
+      name: 'Король Лев',
+      left: index === 5 ? '72rem' : index === 6 ? '39.8rem' : '8rem',
     },
     {
       image: titanic,
-      name: 'Titanic',
-      left: index === 6 ? '75.5rem' : '44rem',
+      name: 'Титанік',
+      left: index === 6 ? '75.5rem' : '42.5rem',
     },
     {
       image: frozen,
-      name: 'Frozen',
-      left: '76rem'
+      name: 'Холодне серце',
+      left: '70.2rem'
     },
   ];
   return posters;
