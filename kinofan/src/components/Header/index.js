@@ -16,9 +16,6 @@ export default function Header() {
           <a href="#">
             <i class="fab fa-youtube-square" aria-hidden="true"></i>
           </a>
-          <a href="#">
-            <i class="fab fa-telegram" aria-hidden="true"></i>
-          </a>
         </div>
       </div>
     </header>

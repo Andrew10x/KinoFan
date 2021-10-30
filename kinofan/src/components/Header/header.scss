@@ -57,3 +57,13 @@ i {
     flex: 1;
   }
 }
+
+@media (max-width: 400px) {
+  .logo {
+    flex:2; 
+    margin-left: 40px;   
+  }
+  .contacts {
+    flex:1;
+  }
+}
