@@ -1,7 +1,6 @@
 header {
   background: #121212;
   display: flex;
-  justify-content: space-between;
   padding: 6px 4px;
   position: fixed;
   top: 0px;
@@ -16,14 +15,52 @@ header {
   flex: 3;
   margin-bottom: 2px;
   margin-left: 100px;
+
+  @media (min-width: 470px) and (max-width: 670px) {
+    margin-left: 40%;
+  }
+
+  @media (min-width: 420px) and (max-width: 470px) {
+    margin-left: 10%;
+  }
+
+  @media (max-width: 420px) {
+    margin-left: 80%;
+  }
 }
 
 .contacts {
   display: flex;
   padding-top: 11px;
-  justify-content: space-around;
   flex: 1;
-  margin-right: 30px;
+  margin-left: 64%;
+
+  @media (min-width: 955px) and (max-width: 1225px) {
+    margin-left: 54%;
+  }
+
+  @media (min-width: 940px) and (max-width: 960px) {
+    margin-left: 64%;
+  }
+
+  @media (min-width: 720px) and (max-width: 940px) {
+    margin-left: 55%;
+  }
+
+  @media (min-width: 400px) and (max-width: 720px) {
+    margin-left: 45%;
+  }
+
+  @media (max-width: 380px) {
+    margin-left: 30%;
+  }
+}
+
+.social-networks {
+  margin-left: 8%;
+  @media (max-width: 420px) {
+    display: none;
+  }
 }
 
 a {
@@ -41,18 +78,21 @@ i {
   .logo {
     flex: 2;
   }
+
   .contacts {
     flex: 1;
   }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 960px) {
   .phone {
     display: none;
   }
+
   .logo {
     flex: 3;
   }
+
   .contacts {
     flex: 1;
   }
