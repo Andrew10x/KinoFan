@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './movie.scss';
 import image from '../../assets/1.jpg';
 
-export default function index() {
-    const dayInMs = 3600 * 24 * 1000;
+export default function Movie() {
+  useEffect(()=>{
+    document.getElementById("title").innerText = 'Темний лицар - квитки на фільм';
+  }, [])
+
+  const dayInMs = 3600 * 24 * 1000;
   let today = new Date();
   today = Number(today.setHours(0, 0, 0, 0));
 

@@ -1,19 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './cinemaHall.scss';
 import chairImg from '../../assets/chair.png';
 
 export default function CinemaHall() {
 
-    const i_size = 10, j_size = 11;
+    useEffect(()=>{
+        document.getElementById("title").innerText = 'Вибір місць';
+      }, [])
+
+    //const i_size = 10, j_size = 11;
     let chairArr = [];
     for(let i=0; i<120; i++) {
         chairArr.push(1);
     }
-    /*for(let i=0; i<i_size; i++) {
-        for(let j=0; j<j_size; j++) {
-            chairArr[i][j] = 1;
-        }
-    }*/
 
     return (
         <section id="cinema-hall">

@@ -8,6 +8,11 @@ import Card from '../../components/Card';
 import getWindowWidth from '../../helpers/windowWidth';
 
 const Main = () => {
+
+  useEffect(()=>{
+    document.getElementById("title").innerText = 'Квитки в кіно - кінотеатр Kinofun | Київ';
+  }, [])
+
   const [width, setWidth] = useState(getWindowWidth());
 
   const [slideIndex, setSlideIndex] = useState(0);
@@ -44,16 +49,19 @@ const Main = () => {
               image={posters[slideIndex].image}
               name={posters[slideIndex].name}
               left={posters[slideIndex].left}
+              alt={posters[slideIndex].alt}
             />
             <Poster
               image={posters[slideIndex + 1].image}
               name={posters[slideIndex + 1].name}
               left={posters[slideIndex + 1].left}
+              alt={posters[slideIndex + 1].alt}
             />
             <Poster
               image={posters[slideIndex + 2].image}
               name={posters[slideIndex + 2].name}
               left={posters[slideIndex + 2].left}
+              alt={posters[slideIndex + 2].alt}
             />
           </div>
         ))}
