@@ -6,12 +6,12 @@ import './styles.scss';
 import getPosters from '../../constants/posters';
 import Card from '../../components/Card';
 import getWindowWidth from '../../helpers/windowWidth';
+import getPositions from '../../constants/positions';
 
 const Main = () => {
-
-  useEffect(()=>{
-    document.getElementById("title").innerText = 'Квитки в кіно - кінотеатр Kinofun | Київ';
-  }, [])
+  useEffect(() => {
+    document.getElementById('title').innerText = 'Квитки в кіно - кінотеатр Kinofun | Київ';
+  }, []);
 
   const [width, setWidth] = useState(getWindowWidth());
 
@@ -24,9 +24,9 @@ const Main = () => {
   window.addEventListener('resize', handleResize);
 
   useEffect(() => {
-    if (width < 640 && numberOfPosters !== 1) setNumberOfPosters(1);
-    if (width < 940 && width > 640 && numberOfPosters !== 2) setNumberOfPosters(2);
-    if (width > 940 && numberOfPosters !== 3) setNumberOfPosters(3);
+    if (width < 670 && numberOfPosters !== 1) setNumberOfPosters(1);
+    if (width < 990 && width > 670 && numberOfPosters !== 2) setNumberOfPosters(2);
+    if (width > 990 && numberOfPosters !== 3) setNumberOfPosters(3);
     console.log(width);
   }, [width]);
 
@@ -50,18 +50,21 @@ const Main = () => {
               name={posters[slideIndex].name}
               left={posters[slideIndex].left}
               alt={posters[slideIndex].alt}
+              filmName={posters[slideIndex].filmName}
             />
             <Poster
               image={posters[slideIndex + 1].image}
               name={posters[slideIndex + 1].name}
               left={posters[slideIndex + 1].left}
               alt={posters[slideIndex + 1].alt}
+              filmName={posters[slideIndex + 1].filmName}
             />
             <Poster
               image={posters[slideIndex + 2].image}
               name={posters[slideIndex + 2].name}
               left={posters[slideIndex + 2].left}
               alt={posters[slideIndex + 2].alt}
+              filmName={posters[slideIndex + 2].filmName}
             />
           </div>
         ))}
@@ -82,9 +85,28 @@ const Main = () => {
             if (!(index % 3)) {
               return (
                 <div className="pair">
-                  <Card image={value.image} />
-                  {posters[index + 1] && <Card image={posters[index + 1].image} />}
-                  {posters[index + 2] && <Card image={posters[index + 2].image} />}
+                  <Card
+                    image={value.image}
+                    filmName={value.filmName}
+                    name={value.name}
+                    positions={getPositions(numberOfPosters)[index]}
+                  />
+                  {posters[index + 1] && (
+                    <Card
+                      image={posters[index + 1].image}
+                      filmName={posters[index + 1].filmName}
+                      name={posters[index + 1].name}
+                      positions={getPositions(numberOfPosters)[index + 1]}
+                    />
+                  )}
+                  {posters[index + 2] && (
+                    <Card
+                      image={posters[index + 2].image}
+                      filmName={posters[index + 2].filmName}
+                      name={posters[index + 2].name}
+                      positions={getPositions(numberOfPosters)[index + 2]}
+                    />
+                  )}
                 </div>
               );
             }
@@ -94,15 +116,31 @@ const Main = () => {
             if (!(index % 2)) {
               return (
                 <div className="pair">
-                  <Card image={value.image} />
-                  <Card image={posters[index + 1].image} />
+                  <Card
+                    image={value.image}
+                    filmName={value.filmName}
+                    name={value.name}
+                    positions={getPositions(numberOfPosters)[index]}
+                  />
+                  <Card
+                    image={posters[index + 1].image}
+                    filmName={posters[index + 1].filmName}
+                    name={posters[index + 1].name}
+                    positions={getPositions(numberOfPosters)[index + 1]}
+                  />
                 </div>
               );
             }
           })}
-        {numberOfPosters === 1 && posters.map(value => (
-          <Card image={value.image} />
-        ))}
+        {numberOfPosters === 1 &&
+          posters.map((value, index) => (
+            <Card
+              image={value.image}
+              filmName={value.filmName}
+              name={value.name}
+              positions={getPositions(numberOfPosters)[index]}
+            />
+          ))}
       </div>
     </>
   );

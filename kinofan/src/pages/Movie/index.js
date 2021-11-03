@@ -5,6 +5,7 @@ import image from '../../assets/1.jpg';
 export default function Movie() {
   useEffect(()=>{
     document.getElementById("title").innerText = 'Темний лицар - квитки на фільм';
+    window.scrollTo(0, 0)
   }, [])
 
   const dayInMs = 3600 * 24 * 1000;
