@@ -1,108 +1,122 @@
 #cinema-hall {
-    margin: 90px auto;
-    text-align: center;
+  margin: 90px auto;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .screen {
-    padding: 8px;
-    border-bottom: 1px solid;
-    width: 590px;
-    margin: 10px auto;
-    padding-top: 20px;
+  padding: 8px;
+  border-bottom: 1px solid;
+  width: 590px;
+  margin: 10px auto;
+  padding-top: 20px;
 }
 
 .container {
-    margin: 0px 50px;
+  margin: 0px 50px;
 }
 
 .hall {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(12, 55px);
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(12, 55px);
 }
 
 .chair {
-    width: 45px;
-    margin: 0 auto;
-    margin-top: 9px;
-    cursor: pointer;
-    display: flex;
-    padding: 2px;
-    border-radius: 7px;
-}
-
-.chair:hover {
-    background-color: rgb(107, 185, 111);
+  width: 45px;
+  margin: 0 auto;
+  margin-top: 9px;
+  cursor: pointer;
+  display: flex;
+  padding: 2px;
+  border-radius: 7px;
+  z-index: 2;
 }
 
 .row {
-    border: 1px solid;
-    align-self: center;
-    border-radius: 8px;
-    padding: 8px 0px;
-    margin: 10px 8px 8px 8px;
-    background: #dadada;
+  border: 1px solid;
+  align-self: center;
+  border-radius: 8px;
+  padding: 8px 0px;
+  margin: 10px 8px 8px 8px;
+  background: #dadada;
 }
 
 .number {
-    position: absolute;
-    margin-left: 23px;
-    margin-top: -44px;
+  position: absolute;
+  margin-left: 23px;
+  margin-top: -44px;
+  cursor: pointer;
 }
 
 .number12 {
+  margin-left: 18px;
+}
+
+.buy_button {
+  width: 90%;
+  color: #FFFFFF;
+  background-color: #000000;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  margin: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+
+  &:hover {
+    background-color: #202020;
+  }
+}
+
+@media (max-width: 750px) {
+  .chair {
+    width: 38px;
+  }
+
+  .hall {
+    grid-template-columns: repeat(12, 43px);
+  }
+
+  .screen {
+    width: 80%;
+  }
+
+  .number {
     margin-left: 18px;
+    margin-top: -37px;
+    font-size: 13px;
+  }
+
+  .number12 {
+    margin-left: 14px;
+  }
 }
 
-@media(max-width: 750px) {
-    .chair {
-        width: 38px;
-    }
+@media (max-width: 570px) {
+  .chair {
+    width: 25px;
+  }
 
-    .hall {
-        grid-template-columns: repeat(12, 43px);
-    }
+  .hall {
+    grid-template-columns: repeat(12, 27px);
+  }
 
-    .screen {
-        width: 80%;
-    }
+  .number {
+    margin-left: 12px;
+    margin-top: -24px;
+    font-size: 8px;
+  }
 
-    .number {
-        margin-left: 18px;
-        margin-top: -37px;
-        font-size: 13px;
-    }
+  .number12 {
+    margin-left: 9px;
+  }
 
-    .number12 {
-        margin-left: 14px;
-    }
-}
+  .row {
+    margin: 2px 1px 4px 1px;
+  }
 
-@media(max-width: 570px) {
-    .chair {
-        width: 25px;
-
-    }
-
-    .hall {
-        grid-template-columns: repeat(12, 27px);
-    }
-
-    .number {
-        margin-left: 12px;
-        margin-top: -24px;
-        font-size: 8px;
-    }
-
-    .number12 {
-        margin-left: 9px;
-    }
-
-    .row {
-        margin: 2px 1px 4px 1px;
-    }
-
-    .screen {
-        width: 75%;
-    }
+  .screen {
+    width: 75%;
+  }
 }

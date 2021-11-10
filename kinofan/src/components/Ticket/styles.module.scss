@@ -1,0 +1,11 @@
+.ticket {
+  display: flex;
+  border: 1px solid #535353;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  border-radius: 0.2rem;
+
+  .price {
+    margin-left: 2rem;
+  }
+}

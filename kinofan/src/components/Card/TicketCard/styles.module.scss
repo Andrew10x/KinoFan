@@ -1,0 +1,22 @@
+.card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  padding: 1rem;
+  margin: 2rem auto;
+  max-width: 40rem;
+  position: absolute;
+  left: 75%;
+  top: 25%;
+
+  @media (max-width: 1300px) {
+    left: 25%;
+    top: 110%;
+    width: 50%;
+  }
+
+  @media (max-width: 570px) {
+    left: 15%;
+    top: 92%;
+    width: 70%;
+  }
+}
