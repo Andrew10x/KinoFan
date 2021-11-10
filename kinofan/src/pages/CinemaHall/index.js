@@ -17,6 +17,7 @@ export default function CinemaHall() {
 
   useEffect(() => {
     document.getElementById('title').innerText = 'Вибір місць';
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

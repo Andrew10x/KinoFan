@@ -9,6 +9,7 @@ export default function Movie() {
   const history = useHistory();
   const params = useParams();
   const { filmName } = params;
+  
   useEffect(() => {
     document.getElementById('title').innerText = 'Темний лицар - квитки на фільм';
     window.scrollTo(0, 0);
