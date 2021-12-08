@@ -13,6 +13,10 @@ export class FilmService {
     return this.repository.findOne({ image: name });
   }
 
+  async findAll() {
+    return this.repository.find();
+  }
+
   async create(filmDto: CreateFilmDto) {
     const film = this.repository.create({ ...filmDto });
     return this.repository.save(film);

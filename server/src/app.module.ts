@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FilmModule } from './film/film.module';
 import { Film } from './film/film.entity';
+import { SeatModule } from './seat/seat.module';
+import { Seat } from './seat/seat.entity';
 
 @Module({
   imports: [
@@ -14,10 +16,11 @@ import { Film } from './film/film.entity';
       username: 'postgres',
       password: 'root',
       database: 'kinofan',
-      entities: [Film],
+      entities: [Film, Seat],
       synchronize: true,
     }),
     FilmModule,
+    SeatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

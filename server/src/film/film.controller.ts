@@ -7,6 +7,11 @@ import { FilmService } from './film.service';
 export class FilmController {
   constructor(private readonly service: FilmService) {}
 
+  @Get()
+  async findAllFilms() {
+    return this.service.findAll();
+  }
+
   @Get(':name')
   async findFilm(@Param('name') name: string): Promise<Film> {
     return this.service.findOne(name);
@@ -14,6 +19,6 @@ export class FilmController {
 
   @Post()
   async createFilm(@Body() filmDto: CreateFilmDto) {
-    return this.service.create(filmDto)
+    return this.service.create(filmDto);
   }
 }
