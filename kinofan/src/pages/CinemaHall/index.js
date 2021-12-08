@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import Spinner from 'react-loader-spinner';
 
 import TicketCard from '../../components/Card/TicketCard';
 import getPosters from '../../constants/posters';
@@ -9,26 +10,61 @@ import Chair from '../../components/Chair';
 import Ticket from '../../components/Ticket';
 import getSeatsArray from '../../helpers/seats';
 import getObjectInArrayIndex from '../../helpers/objectInArray';
+import { getAllFilms, getSeats } from '../../api/api-helper';
 
 export default function CinemaHall() {
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const [seats, setSeats] = useState(getSeatsArray());
 
+  const [films, setFilms] = useState(null);
+
+  const [seatArr, setSeatArr] = useState(null);
+
+  const history = useHistory();
+
+  const params = useParams();
+
+  const { session, filmName } = params;
+
+  const year = new Date().getFullYear();
+  let month = +session.split('-')[3] + 1;
+  let day = +session.split('-')[2];
+  console.log({ month, day });
+  if (month < 9) month = `0${month + 1}`;
+  if (day < 9) day = `0${day}`;
+  const date = `${year}-${month}-${day}`;
+  const time = `${session.split('-')[0]}:${session.split('-')[1]}`;
+
+  console.log(session, filmName);
+
   useEffect(() => {
     document.getElementById('title').innerText = 'Вибір місць';
     window.scrollTo(0, 0);
+    const getFilmsData = async () => {
+      const films = await getAllFilms();
+      setFilms(films);
+    };
+    const getSeatsData = async () => {
+      const seats = await getSeats(filmName, date, time);
+      setSeatArr(seats);
+    };
+    getFilmsData();
+    getSeatsData();
   }, []);
 
   useEffect(() => {
     console.log(selectedSeats);
   }, [selectedSeats]);
 
-  const params = useParams();
+  if (!films || !seatArr)
+    return (
+      <div style={{ marginTop: '5rem', marginLeft: '45rem' }}>
+        <Spinner type="TailSpin" color="#757575" height={100} width={100} timeout={3000} />
+      </div>
+    );
 
-  const { session, filmName } = params;
-
-  const name = getPosters(0).find(value => value.filmName === filmName).name;
+  const name = getPosters(0, films).find(value => value.filmName === filmName).name;
 
   const chairArr = [];
   for (let i = 0; i < 120; i++) {
@@ -58,6 +94,10 @@ export default function CinemaHall() {
       }
       return previousValue;
     });
+    history.push(`/hall/${filmName}/${session}/form`);
+    localStorage.setItem('seats', JSON.stringify(selectedSeats));
+    localStorage.setItem('price', selectedSeats.length * 80);
+    localStorage.setItem('filmData', JSON.stringify({ filmName, date, time }));
     setSelectedSeats([]);
   };
 
@@ -81,9 +121,11 @@ export default function CinemaHall() {
                   seat={index % 12}
                   selectHandler={selectHandler}
                   taken={
-                    seats[getObjectInArrayIndex(seats, Math.floor(index / 12) + 1, index % 12)]
-                      .taken
+                    seatArr.find(
+                      value => value.row === Math.floor(index / 12) + 1 && value.seat === index % 12
+                    ).status === 'taken'
                   }
+                  num={index % 12}
                 />
                 {index % 12 === 10 ? (
                   <div className="number number12">{index % 12}</div>
@@ -106,7 +148,9 @@ export default function CinemaHall() {
             />
           ))}
           <h3>Всього до оплати: {`${selectedSeats.length * 80} грн.`}</h3>
-          <button className="buy_button" onClick={clickHandler}>Придбати</button>
+          <button className="buy_button" onClick={clickHandler}>
+            Придбати
+          </button>
         </TicketCard>
       )}
     </section>

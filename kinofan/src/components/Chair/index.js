@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import chairImg from '../../assets/chair.png';
 
-const Chair = ({ row, seat, taken, selectHandler }) => {
+const Chair = ({ row, seat, taken, selectHandler, num }) => {
   const [clicked, setClicked] = useState(false);
   const clickHandler = () => {
+    console.log(num);
     if (taken) return;
     setClicked(previousValue => !previousValue);
     selectHandler(row, seat, !clicked);
