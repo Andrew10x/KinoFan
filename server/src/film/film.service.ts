@@ -10,7 +10,7 @@ export class FilmService {
     @InjectRepository(Film) private readonly repository: Repository<Film>,
   ) {}
   async findOne(name: string): Promise<Film> {
-    return this.repository.findOne({ originalName: name });
+    return this.repository.findOne({ image: name });
   }
 
   async create(filmDto: CreateFilmDto) {

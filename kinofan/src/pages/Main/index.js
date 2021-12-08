@@ -27,7 +27,6 @@ const Main = () => {
     if (width < 670 && numberOfPosters !== 1) setNumberOfPosters(1);
     if (width < 990 && width > 670 && numberOfPosters !== 2) setNumberOfPosters(2);
     if (width > 990 && numberOfPosters !== 3) setNumberOfPosters(3);
-    console.log(width);
   }, [width]);
 
   const nextSlide = () => {
@@ -46,6 +45,7 @@ const Main = () => {
         {posters.map((value, index) => (
           <div className={slideIndex === index ? 'slide active-anim' : 'slide'} key={value.image}>
             <Poster
+              key={posters[slideIndex].name}
               image={posters[slideIndex].image}
               name={posters[slideIndex].name}
               left={posters[slideIndex].left}
@@ -53,6 +53,7 @@ const Main = () => {
               filmName={posters[slideIndex].filmName}
             />
             <Poster
+              key={posters[slideIndex + 1].name}
               image={posters[slideIndex + 1].image}
               name={posters[slideIndex + 1].name}
               left={posters[slideIndex + 1].left}
@@ -60,6 +61,7 @@ const Main = () => {
               filmName={posters[slideIndex + 1].filmName}
             />
             <Poster
+              key={posters[slideIndex + 2].name}
               image={posters[slideIndex + 2].image}
               name={posters[slideIndex + 2].name}
               left={posters[slideIndex + 2].left}
@@ -84,8 +86,9 @@ const Main = () => {
           posters.map((value, index) => {
             if (!(index % 3)) {
               return (
-                <div className="pair">
+                <div className="pair" key={value.image}>
                   <Card
+                    key={value.filmName}
                     image={value.image}
                     filmName={value.filmName}
                     name={value.name}
@@ -93,6 +96,7 @@ const Main = () => {
                   />
                   {posters[index + 1] && (
                     <Card
+                      key={posters[index + 1].filmName}
                       image={posters[index + 1].image}
                       filmName={posters[index + 1].filmName}
                       name={posters[index + 1].name}
@@ -101,6 +105,7 @@ const Main = () => {
                   )}
                   {posters[index + 2] && (
                     <Card
+                      key={posters[index + 2].filmName}
                       image={posters[index + 2].image}
                       filmName={posters[index + 2].filmName}
                       name={posters[index + 2].name}
@@ -115,14 +120,16 @@ const Main = () => {
           posters.map((value, index) => {
             if (!(index % 2)) {
               return (
-                <div className="pair">
+                <div className="pair" key={value.image}>
                   <Card
+                    key={value.filmName}
                     image={value.image}
                     filmName={value.filmName}
                     name={value.name}
                     positions={getPositions(numberOfPosters)[index]}
                   />
                   <Card
+                    key={posters[index + 1].filmName}
                     image={posters[index + 1].image}
                     filmName={posters[index + 1].filmName}
                     name={posters[index + 1].name}
@@ -135,6 +142,7 @@ const Main = () => {
         {numberOfPosters === 1 &&
           posters.map((value, index) => (
             <Card
+              key={value.filmName}
               image={value.image}
               filmName={value.filmName}
               name={value.name}

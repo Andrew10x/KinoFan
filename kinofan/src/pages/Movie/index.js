@@ -1,18 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
+import { getFilm } from '../../api/api-helper';
 import getMonth from '../../constants/months';
 import './movie.scss';
-import image from '../../assets/1.jpg';
+import images from '../../constants/images';
 
 export default function Movie() {
   const history = useHistory();
   const params = useParams();
   const { filmName } = params;
-  
+  const [filmData, setFilmData] = useState(null);
+
   useEffect(() => {
     document.getElementById('title').innerText = 'Темний лицар - квитки на фільм';
     window.scrollTo(0, 0);
+    const getData = async () => {
+      const data = await getFilm(filmName);
+      setFilmData(data);
+    };
+    getData();
   }, []);
 
   const dayInMs = 3600 * 24 * 1000;
@@ -39,40 +46,34 @@ export default function Movie() {
 
   const clickHandler = (filmName, session) => history.push(`/hall/${filmName}/${session}`);
 
+  if (!filmData) return <h1 style={{ marginTop: '5rem', textAlign: 'center' }}>Loading...</h1>;
+
   return (
     <>
       <section id="movie">
-        <img src={image} alt="img" />
+        <img src={images[filmData.image]} alt="img" />
         <div className="text">
-          <h2 className="title">Темний лицар</h2>
+          <h2 className="title">{filmData.name}</h2>
           <div className="field">
-            <b>Оригінальна назва:</b> The Dark Knight
+            <b>Оригінальна назва:</b> {filmData.originalName}
           </div>
           <div className="field">
-            <b>Режисер:</b> Крістофер Нолан
+            <b>Режисер:</b> {filmData.director}
           </div>
           <div className="field">
-            <b>Мова:</b> українська
+            <b>Мова:</b> {filmData.language}
           </div>
           <div className="field">
-            <b>Жанр:</b> Екшн, Драма
+            <b>Жанр:</b> {filmData.genre}
           </div>
           <div className="field">
-            <b>Тривалість:</b> 152 хв.
+            <b>Тривалість:</b> {filmData.duration} хв.
           </div>
           <div className="field">
-            <b>Студія:</b> Warner Bros. Pictures
+            <b>Студія:</b> {filmData.studio}
           </div>
           <div className="plot">
-            <p>
-              У місті Ґотем кримінальний геній на прізвисько Джокер грабує банки, що належать
-              міській мафії.Тим часом окружний прокурор Гарві Дент, прозваний Білим Лицарем Ґотема,
-              намагається викорінити злочинність законними методами. На противагу йому таємничий
-              герой Бетмен вершить правосуддя силою. Багатій Брюс Вейн, що насправді і є Бетменом,
-              бачить у Гарві заміну собі в ролі захисника Ґотема. Вейн сподівається, що тепер зможе
-              возз'єднатися з Рейчел Доуз, у яку закоханий з дитинства. Коли, здавалося б,
-              правосуддя перемогло, Джокер підкидає тіло чоловіка в костюмі Бетмена.{' '}
-            </p>
+            <p>{filmData.description}</p>
           </div>
         </div>
       </section>
@@ -82,7 +83,7 @@ export default function Movie() {
 
         <div className="date">
           {dateArr.map((date, index) => (
-            <div className="date-block">
+            <div className="date-block" key={date}>
               <div className="cur-date">
                 {date} {getMonth(monthArr[index])}
               </div>

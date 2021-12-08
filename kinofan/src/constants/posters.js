@@ -65,7 +65,7 @@ const getPosters = index => {
       name: 'Король Лев',
       left: index === 5 ? '72rem' : index === 6 ? '39.8rem' : '8rem',
       alt: 'Kinofun квитки',
-      filmName: 'thelionking',
+      filmName: 'lionking',
     },
     {
       image: titanic,
