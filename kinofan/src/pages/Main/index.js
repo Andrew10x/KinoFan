@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Spinner from 'react-loader-spinner';
 
 import SliderButton from '../../components/SliderButton';
 import Poster from '../../components/Poster';
@@ -7,10 +8,17 @@ import getPosters from '../../constants/posters';
 import Card from '../../components/Card';
 import getWindowWidth from '../../helpers/windowWidth';
 import getPositions from '../../constants/positions';
+import { getAllFilms } from '../../api/api-helper';
 
 const Main = () => {
+  const [films, setFilms] = useState(null);
   useEffect(() => {
     document.getElementById('title').innerText = 'Квитки в кіно - кінотеатр Kinofun | Київ';
+    const getFilmsData = async () => {
+      const films = await getAllFilms();
+      setFilms(films);
+    };
+    getFilmsData();
   }, []);
 
   const [width, setWidth] = useState(getWindowWidth());
@@ -37,7 +45,14 @@ const Main = () => {
     if (slideIndex !== 0) setSlideIndex(previousValue => previousValue - 1);
   };
 
-  const posters = getPosters(slideIndex);
+  if (!films)
+    return (
+      <div style={{ marginTop: '5rem', marginLeft: '45rem' }}>
+        <Spinner type="TailSpin" color="#757575" height={100} width={100} timeout={3000} />
+      </div>
+    );
+
+  const posters = getPosters(slideIndex, films);
 
   return (
     <>

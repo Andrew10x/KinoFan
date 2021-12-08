@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import Spinner from 'react-loader-spinner';
 
 import { getFilm } from '../../api/api-helper';
 import getMonth from '../../constants/months';
@@ -46,7 +47,12 @@ export default function Movie() {
 
   const clickHandler = (filmName, session) => history.push(`/hall/${filmName}/${session}`);
 
-  if (!filmData) return <h1 style={{ marginTop: '5rem', textAlign: 'center' }}>Loading...</h1>;
+  if (!filmData)
+    return (
+      <div style={{ marginTop: '5rem', marginLeft: '45rem' }}>
+        <Spinner type="TailSpin" color="#757575" height={100} width={100} timeout={3000} />
+      </div>
+    );
 
   return (
     <>
