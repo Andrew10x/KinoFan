@@ -96,7 +96,7 @@ export default function CinemaHall() {
     });
     history.push(`/hall/${filmName}/${session}/form`);
     localStorage.setItem('seats', JSON.stringify(selectedSeats));
-    localStorage.setItem('price', selectedSeats.length * 80);
+    localStorage.setItem('price', selectedSeats.length * seatArr[0].price);
     localStorage.setItem('filmData', JSON.stringify({ filmName, date, time }));
     setSelectedSeats([]);
   };
@@ -125,7 +125,6 @@ export default function CinemaHall() {
                       value => value.row === Math.floor(index / 12) + 1 && value.seat === index % 12
                     ).status === 'taken'
                   }
-                  num={index % 12}
                 />
                 {index % 12 === 10 ? (
                   <div className="number number12">{index % 12}</div>
@@ -144,10 +143,10 @@ export default function CinemaHall() {
               key={`${value.row}=${value.seat}`}
               row={value.row}
               seat={value.seat}
-              price="80 грн."
+              price={`${seatArr[0].price} грн.`}
             />
           ))}
-          <h3>Всього до оплати: {`${selectedSeats.length * 80} грн.`}</h3>
+          <h3>Всього до оплати: {`${selectedSeats.length * seatArr[0].price} грн.`}</h3>
           <button className="buy_button" onClick={clickHandler}>
             Придбати
           </button>

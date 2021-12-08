@@ -14,7 +14,6 @@ export default function Movie() {
   const [filmData, setFilmData] = useState(null);
 
   useEffect(() => {
-    document.getElementById('title').innerText = 'Темний лицар - квитки на фільм';
     window.scrollTo(0, 0);
     const getData = async () => {
       const data = await getFilm(filmName);
@@ -22,6 +21,10 @@ export default function Movie() {
     };
     getData();
   }, []);
+
+  useEffect(() => {
+    if (filmData) document.getElementById('title').innerText = `${filmData.name} - квитки на фільм`;
+  }, [filmData])
 
   const dayInMs = 3600 * 24 * 1000;
   let today = new Date();
