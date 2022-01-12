@@ -8,6 +8,7 @@ import lionking from '../assets/lionking.jpg';
 import zootopia from '../assets/zootopia.jpg';
 import frozen from '../assets/frozen.jpg';
 import jurassicworld from '../assets/jurassicworld.jpg';
+import alita from '../assets/alita.png';
 
 const images = {
   avatar,
@@ -20,6 +21,7 @@ const images = {
   zootopia,
   frozen,
   jurassicworld,
+  alita,
 };
 
 export default images;

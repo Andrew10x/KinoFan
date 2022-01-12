@@ -18,6 +18,17 @@ export const getSeats = async (film, date, time) => {
 };
 
 export const updateSeats = async array => {
-  console.log(array)
   await axios.post(`${API_URL}/seat/update`, array);
+};
+
+export const updateFilm = async film => {
+  await axios.post(`${API_URL}/film/update`, film);
+};
+
+export const createFilm = async film => {
+  await axios.post(`${API_URL}/film`, film);
+};
+
+export const deleteFilm = async id => {
+  await axios.delete(`${API_URL}/film?id=${id}`);
 };

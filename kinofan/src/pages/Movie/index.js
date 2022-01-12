@@ -56,7 +56,7 @@ export default function Movie() {
         <Spinner type="TailSpin" color="#757575" height={100} width={100} timeout={3000} />
       </div>
     );
-
+    localStorage.setItem('filmName', filmData.name)
   return (
     <>
       <section id="movie">

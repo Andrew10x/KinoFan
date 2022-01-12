@@ -17,8 +17,21 @@ export class FilmService {
     return this.repository.find();
   }
 
-  async create(filmDto: CreateFilmDto) {
-    const film = this.repository.create({ ...filmDto });
-    return this.repository.save(film);
+  async create(filmDto: CreateFilmDto, create: boolean) {
+    if (create) {
+      const film = this.repository.create({ ...filmDto });
+      return this.repository.save(film);
+    } else {
+      this.repository
+        .createQueryBuilder()
+        .update(Film)
+        .set(filmDto)
+        .where({ image: filmDto.image })
+        .execute();
+    }
+  }
+
+  async delete(image: string) {
+    this.repository.delete({ image });
   }
 }

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { CreateFilmDto } from './create-film.dto';
 import { Film } from './film.entity';
 import { FilmService } from './film.service';
@@ -19,6 +27,17 @@ export class FilmController {
 
   @Post()
   async createFilm(@Body() filmDto: CreateFilmDto) {
-    return this.service.create(filmDto);
+    return this.service.create(filmDto, true);
+  }
+
+  @Post('update')
+  async updateFilm(@Body() filmDto: CreateFilmDto) {
+    console.log('here');
+    return this.service.create(filmDto, false);
+  }
+
+  @Delete()
+  async deleteFilm(@Query('id') id: string) {
+    this.service.delete(id);
   }
 }

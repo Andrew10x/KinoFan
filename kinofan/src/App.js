@@ -5,8 +5,10 @@ import Main from './pages/Main';
 import Movie from './pages/Movie';
 import CinemaHall from './pages/CinemaHall';
 import Form from './pages/Form';
+import FilmAdmin from './pages/Admin';
 
 import './App.scss';
+import EditFilm from './pages/FilmEdit';
 
 const App = () => {
   return (
@@ -24,6 +26,12 @@ const App = () => {
         </Route>
         <Route path="/hall/:filmName/:session/form">
           <Form />
+        </Route>
+        <Route path="/admin" exact>
+          <FilmAdmin />
+        </Route>
+        <Route path="/admin/edit">
+          <EditFilm />
         </Route>
       </Switch>
     </>

@@ -16,6 +16,7 @@ const Main = () => {
     document.getElementById('title').innerText = 'Квитки в кіно - кінотеатр Kinofun | Київ';
     const getFilmsData = async () => {
       const films = await getAllFilms();
+      films.sort((a, b) => a.id - b.id);
       setFilms(films);
     };
     getFilmsData();
@@ -93,7 +94,7 @@ const Main = () => {
         <SliderButton
           moveSlide={nextSlide}
           direction="next"
-          display={slideIndex === 7 ? 'none' : ''}
+          display={slideIndex === 8 ? 'none' : ''}
         />
       </div>
       <div className="films">
